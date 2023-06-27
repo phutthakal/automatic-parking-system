@@ -1,5 +1,5 @@
 bay_order=["A","F","C","B","G","D","H","E"]
-avaliable_lot=[]
+parked_lot=[]
 
 a=["A201","A202","A203","A204",
    "A301","A302","A303","A304",
@@ -50,14 +50,14 @@ h=["H201","H202","H203","H204",
    "H601","H602","H603","H604",
    "H701","H702","H703","H704","H705"]
 
-oha=["A101","A102"]
-ohb=["B101","B102"]
-ohc=["C101","C102"]
-ohd=["D101","D102"]
-ohe=["E101","E102"]
-ohf=["F101","F102"]
-ohg=["G101","G102"]
-ohh=["H101","H102"]
+oha=["A101","A102","A103","A104"]
+ohb=["B101","B102","B103","B104"]
+ohc=["C101","C102","C103","C104"]
+ohd=["D101","D102","D103","D104"]
+ohe=["E101","E102","E103","E104"]
+ohf=["F101","F102","F103","F104"]
+ohg=["G101","G102","G103","G104"]
+ohh=["H101","H102","H103","H104"]
 
 # nz = normal zone
 nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
@@ -66,103 +66,46 @@ nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
 oz={"A":oha,"F":ohf,"C":ohc,"B":ohb,"G":ohg,"D":ohd,"H":ohh,"E":ohe}
 
 
-def get_lot():
-   while True:
-      print("=====================================")
-      user_height =int(input("Enter 'n' to select option\nInput your car height  : "))
-      print("=====================================")
-      if user_height=="":
-         print("----- Enter your car height -----")
-                                       
-      elif user_height>=190:
+def get_lot(car_height):
+   parking_lot = None
+   for _ in range(8):
+      if car_height>=190:
          removed_element = bay_order.pop(0)
          bay_order.append(removed_element)
-         remove_lot = oz[removed_element].pop(0)
-         avaliable_lot.append(remove_lot)
+         if len(oz[removed_element])==0:
+            continue
+         parking_lot = oz[removed_element].pop(0)
+         
+         parked_lot.append(parking_lot)
          print("Your bay is :",removed_element)
-         print("your parking lot is : ",remove_lot)
-         print("avaliable lot check:",avaliable_lot)
+         print("your parking lot is : ",parking_lot)
+         print("parked lot check:",parked_lot)
+         return parked_lot
          
-         empty_lot = None
-         for bay in bay_order:
-            if len(oz[bay]) != 0:
-               empty_lot = bay
-               break
-         if empty_lot is not None:
-            # print("Found empty lot:", empty_lot)
-            remove = oz[removed_element].pop(0)
-            avaliable_lot.append(remove_lot)
-            print("Your bay is :",empty_lot)
-            print("your parking lot is : ",remove)
-            print("avaliable lot check:",avaliable_lot)
-         else:
-            print("No empty lots available")
-
-         
-         
-      elif user_height<190:
+      else:
          removed_element = bay_order.pop(0)            
          bay_order.append(removed_element)                              
          print("Your bay is :",removed_element)
-         remove_lot = nz[removed_element].pop(0)
-         avaliable_lot.append(remove_lot)
+         if len(nz[removed_element])==0:
+            continue
+         parking_lot = nz[removed_element].pop(0)
+         parked_lot.append(parking_lot)         
+         print("Your bay is :",removed_element)
+         print("your parking lot is : ",parking_lot)
+         print("parked lot check:",parked_lot)
+         return parked_lot
+   return parking_lot
 
-         print("your parking lot is : ",remove_lot)
-         print("Empty normal lot now : ",nz[removed_element])
 
+def return_lot(lot_no):
+   if lot_no in parked_lot:
+      if lot_no[1]=="1":
+         oz[lot_no[0]].append(lot_no)
       else:
-         print("----- Enter valid car weight -----")
-
-
-
-
-def return_lot():
-    while True:
-         print("-------------------------------")
-         print("Avaliable parking lot now :",avaliable_lot)
-         user_height_check = input("Enter 'y' if you car height >= 190\nEnter 'n' if you car height < 190\nEnter 'o' to select options : ")
-
-         if user_height_check=='y':
-            print("before :",avaliable_lot)
-            print("-------------------------------")
-            user_lot_input = input("Enter your parking lot :")
-
-            user_lot_input in avaliable_lot
-            over_location = avaliable_lot.index(user_lot_input)
-            return_o_element = avaliable_lot.pop(over_location)
-            oz[return_o_element[0]].append(return_o_element)
-            oz[return_o_element[0]].sort()
-                        
-            print("ParkingBay :",user_lot_input[0])
-
-            print("Over Parking lot empty now :",oz[return_o_element[0]])
-            print("Amount :",len(oz[return_o_element[0]]))
-            print("Avaliable lot after return lot :",avaliable_lot)
-            break
-
-         elif user_height_check=='n':
-            print("Aaliable lot before return lot :",avaliable_lot)
-            print("-------------------------------")
-            n_user_lot_input = input("Enter your parking lot :")
-
-            n_user_lot_input in avaliable_lot
-            normal_location = avaliable_lot.index(n_user_lot_input)
-            return_n_element = avaliable_lot.pop(normal_location)
-            nz[return_n_element[0]].append(return_n_element)
-            nz[return_n_element[0]].sort()
-                        
-
-            print("ParkingBay :",n_user_lot_input[0])
-            print("Normal Parking lot empty now :",nz[return_n_element[0]])
-            print("Amount :",len(nz[return_n_element[0]]))
-            print("Avaliable lot after return lot :",avaliable_lot)
-            break
-
-         elif user_height_check=='o':
-            return program()
-                   
-         else:
-            print("----- Enter valid option bro !!! -----")
+         nz[lot_no[0]]
+      parked_lot.remove(lot_no)
+      return True
+   return False
    
 def program():
     try:
@@ -170,17 +113,27 @@ def program():
          print("=============== Test2 ===============")
          print("1. Enter your car Height")
          print("2. Return Parking Bay")
-         print("3. Close Program")
-         ch=int(input("\tSelect option : "))
+         print("3. Print parking available in bay")
+         print("4. Close Program")
+         ch=int(input("Select option : "))
          if ch==1:
-            get_lot()
+            height=int(input("Enter car's height: "))
+            parked_lot=get_lot(height)
+            if parked_lot==None:
+               print("Can not get parking lot")
          elif ch==2:
-            return_lot()
-            return program()
+            lot_no=input("Enter lot to return: ")
+            if return_lot(lot_no):
+               print("parked lot check: ",parked_lot)
+            else:
+               print("parked lot check: ",parked_lot)
          elif ch==3:
+            bay=input("Enter bay to print: ")
+            print(nz[bay])
+            print(oz[bay])
+         elif ch==4:
             print("=============== Thank you ===============")
-            break
-         quit()   
+            break 
 
     except:
         program()
