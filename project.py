@@ -1,3 +1,15 @@
+import requests
+
+response = requests.get('http://127.0.0.1:8000/api/test/users')
+print(response.json)
+
+license_plate = response.json()[0]['license_plate']
+#print(license_plate)
+
+height = response.json()[0]['height']
+#print(height)
+
+
 bay_order=["A","F","C","B","G","D","H","E"]
 parked_lot=[]
 
@@ -117,7 +129,7 @@ def program():
          print("4. Close Program")
          ch=int(input("Select option : "))
          if ch==1:
-            height=int(input("Enter car's height: "))
+            height=int(input("Enter car's height:  "))
             parked_lot=get_lot(height)
             if parked_lot==None:
                print("Can not get parking lot")
