@@ -1,16 +1,9 @@
 import requests
-
-response = requests.get('http://127.0.0.1:8000/api/test/users')
-print(response.json)
-
-license_plate = response.json()[0]['license_plate']
-#print(license_plate)
-
-height = response.json()[0]['height']
-#print(height)
-
+import mysql.connector as mc
+import time
 
 bay_order=["A","F","C","B","G","D","H","E"]
+zone_order=["1","2"]
 parked_lot=[]
 
 a=["A201","A202","A203","A204",
@@ -77,6 +70,17 @@ nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
 # oz = over heigh zone
 oz={"A":oha,"F":ohf,"C":ohc,"B":ohb,"G":ohg,"D":ohd,"H":ohh,"E":ohe}
 
+#Parking Zone
+z={"A":zone_order[0],"B":zone_order[0],"C":zone_order[1],"D":zone_order[1],"E":zone_order[1],"F":zone_order[1],"G":zone_order[1],"H":zone_order[1]}
+   
+def refresh_data():
+   while True:
+      response = requests.get('http://127.0.0.1:8000/api/test/users')
+      api_noplate = response.json()[0]['license_plate']
+      api_height = response.json()[0]['height']
+      # time.sleep(0.5)
+      return api_height
+      
 
 def get_lot(car_height):
    parking_lot = None
@@ -89,25 +93,27 @@ def get_lot(car_height):
          parking_lot = oz[removed_element].pop(0)
          
          parked_lot.append(parking_lot)
+         print("Your Parking zone is : ",z[removed_element[0]])
          print("Your bay is :",removed_element)
          print("your parking lot is : ",parking_lot)
          print("parked lot check:",parked_lot)
+   
          return parked_lot
+      
          
       else:
          removed_element = bay_order.pop(0)            
          bay_order.append(removed_element)                              
-         print("Your bay is :",removed_element)
          if len(nz[removed_element])==0:
             continue
          parking_lot = nz[removed_element].pop(0)
-         parked_lot.append(parking_lot)         
+         parked_lot.append(parking_lot)
+         print("Your Parking zone is : ",z[removed_element[0]])         
          print("Your bay is :",removed_element)
          print("your parking lot is : ",parking_lot)
          print("parked lot check:",parked_lot)
          return parked_lot
    return parking_lot
-
 
 def return_lot(lot_no):
    if lot_no in parked_lot:
@@ -119,6 +125,26 @@ def return_lot(lot_no):
       return True
    return False
    
+# def savedata_db(removed_element, api_noplate):
+#    try:
+#       mydb = mc.connect(
+#                host="localhost",
+#                   user="root",
+#                   password="",
+#                   database="carlot"
+#             )
+#       mycursor = mydb.cursor()
+#       bay = get_lot(removed_element)
+#       noplate = refresh_data(api_noplate)
+#       zone = get_lot(removed_element)
+
+#       query = "INSERT INTO data(bay, noplate, zone, nolot,status) VALUES (%s, %s, %s, %s, %s)"
+#       value = ()
+#       mycursor.execute(query)
+#       print("Save data complete")
+#    except:
+#       print("Save data incomplete")
+
 def program():
     try:
         while True:
@@ -129,10 +155,11 @@ def program():
          print("4. Close Program")
          ch=int(input("Select option : "))
          if ch==1:
-            height=int(input("Enter car's height:  "))
+            height = refresh_data()
             parked_lot=get_lot(height)
             if parked_lot==None:
                print("Can not get parking lot")
+            
          elif ch==2:
             lot_no=input("Enter lot to return: ")
             if return_lot(lot_no):
