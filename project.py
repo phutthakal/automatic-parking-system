@@ -125,26 +125,6 @@ def return_lot(lot_no):
       return True
    return False
    
-# def savedata_db(removed_element, api_noplate):
-#    try:
-#       mydb = mc.connect(
-#                host="localhost",
-#                   user="root",
-#                   password="",
-#                   database="carlot"
-#             )
-#       mycursor = mydb.cursor()
-#       bay = get_lot(removed_element)
-#       noplate = refresh_data(api_noplate)
-#       zone = get_lot(removed_element)
-
-#       query = "INSERT INTO data(bay, noplate, zone, nolot,status) VALUES (%s, %s, %s, %s, %s)"
-#       value = ()
-#       mycursor.execute(query)
-#       print("Save data complete")
-#    except:
-#       print("Save data incomplete")
-
 def program():
     try:
         while True:
