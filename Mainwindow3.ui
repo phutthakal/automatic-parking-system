@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1000</width>
-    <height>650</height>
+    <height>694</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -624,7 +624,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget">
          <property name="currentIndex">
-          <number>6</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="home_page">
           <layout class="QVBoxLayout" name="verticalLayout_6">
@@ -2226,7 +2226,7 @@
                             </property>
                             <layout class="QVBoxLayout" name="verticalLayout_18">
                              <item>
-                              <widget class="QLabel" name="label_17">
+                              <widget class="QLabel" name="accept_show_zone_label">
                                <property name="font">
                                 <font>
                                  <family>Mitr SemiBold</family>
@@ -2242,7 +2242,7 @@
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLabel" name="label_18">
+                              <widget class="QLabel" name="accept_show_bay_label">
                                <property name="font">
                                 <font>
                                  <family>Mitr SemiBold</family>
@@ -2258,7 +2258,7 @@
                               </widget>
                              </item>
                              <item>
-                              <widget class="QLabel" name="label_19">
+                              <widget class="QLabel" name="accept_show_lot_label">
                                <property name="font">
                                 <font>
                                  <family>Mitr SemiBold</family>
@@ -2491,7 +2491,7 @@
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLineEdit" name="lineEdit">
+                           <widget class="QLineEdit" name="return_edit">
                             <property name="font">
                              <font>
                               <family>Mitr SemiBold</family>
@@ -2504,7 +2504,7 @@
                            </widget>
                           </item>
                           <item>
-                           <widget class="QLabel" name="label_21">
+                           <widget class="QLabel" name="return_status_label">
                             <property name="font">
                              <font>
                               <family>Mitr SemiBold</family>
@@ -2727,22 +2727,22 @@
                    </column>
                    <column>
                     <property name="text">
-                     <string>Zone</string>
-                    </property>
-                   </column>
-                   <column>
-                    <property name="text">
                      <string>Bay</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>Lot</string>
+                     <string>License Plate</string>
                     </property>
                    </column>
                    <column>
                     <property name="text">
-                     <string>License Plate</string>
+                     <string>Zone</string>
+                    </property>
+                   </column>
+                   <column>
+                    <property name="text">
+                     <string>Lot</string>
                     </property>
                    </column>
                    <column>
@@ -2773,10 +2773,10 @@
                    </property>
                    <layout class="QVBoxLayout" name="verticalLayout_11">
                     <property name="spacing">
-                     <number>0</number>
+                     <number>6</number>
                     </property>
                     <property name="leftMargin">
-                     <number>15</number>
+                     <number>0</number>
                     </property>
                     <property name="topMargin">
                      <number>0</number>
@@ -2822,7 +2822,7 @@
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
-                           <pointsize>12</pointsize>
+                           <pointsize>10</pointsize>
                           </font>
                          </property>
                          <property name="text">
@@ -2831,56 +2831,17 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLineEdit" name="lineEdit_2"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_25">
-                      <property name="frameShape">
-                       <enum>QFrame::NoFrame</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_27">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QLabel" name="label_23">
-                         <property name="maximumSize">
-                          <size>
-                           <width>16777215</width>
-                           <height>20</height>
-                          </size>
-                         </property>
+                        <widget class="QLineEdit" name="id_edit">
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
                            <pointsize>12</pointsize>
                           </font>
                          </property>
-                         <property name="text">
-                          <string>Zone</string>
+                         <property name="styleSheet">
+                          <string notr="true">border-color: rgb(0, 255, 0);</string>
                          </property>
                         </widget>
-                       </item>
-                       <item>
-                        <widget class="QLineEdit" name="lineEdit_3"/>
                        </item>
                       </layout>
                      </widget>
@@ -2920,7 +2881,7 @@
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
-                           <pointsize>12</pointsize>
+                           <pointsize>10</pointsize>
                           </font>
                          </property>
                          <property name="text">
@@ -2929,56 +2890,14 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLineEdit" name="lineEdit_4"/>
-                       </item>
-                      </layout>
-                     </widget>
-                    </item>
-                    <item>
-                     <widget class="QFrame" name="frame_27">
-                      <property name="frameShape">
-                       <enum>QFrame::NoFrame</enum>
-                      </property>
-                      <property name="frameShadow">
-                       <enum>QFrame::Raised</enum>
-                      </property>
-                      <layout class="QVBoxLayout" name="verticalLayout_29">
-                       <property name="spacing">
-                        <number>0</number>
-                       </property>
-                       <property name="leftMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="topMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="rightMargin">
-                        <number>0</number>
-                       </property>
-                       <property name="bottomMargin">
-                        <number>0</number>
-                       </property>
-                       <item>
-                        <widget class="QLabel" name="label_25">
-                         <property name="maximumSize">
-                          <size>
-                           <width>16777215</width>
-                           <height>20</height>
-                          </size>
-                         </property>
+                        <widget class="QLineEdit" name="bay_edit">
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
                            <pointsize>12</pointsize>
                           </font>
                          </property>
-                         <property name="text">
-                          <string>Lot</string>
-                         </property>
                         </widget>
-                       </item>
-                       <item>
-                        <widget class="QLineEdit" name="lineEdit_5"/>
                        </item>
                       </layout>
                      </widget>
@@ -3018,7 +2937,7 @@
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
-                           <pointsize>12</pointsize>
+                           <pointsize>10</pointsize>
                           </font>
                          </property>
                          <property name="text">
@@ -3027,7 +2946,182 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QLineEdit" name="lineEdit_6"/>
+                        <widget class="QLineEdit" name="license_edit">
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_25">
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_27">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_23">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>10</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Zone</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="zone_edit">
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="frame_27">
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_29">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="label_25">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>10</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Lot</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="lot_edit">
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                        </widget>
+                       </item>
+                      </layout>
+                     </widget>
+                    </item>
+                    <item>
+                     <widget class="QFrame" name="time_check_frame">
+                      <property name="frameShape">
+                       <enum>QFrame::NoFrame</enum>
+                      </property>
+                      <property name="frameShadow">
+                       <enum>QFrame::Raised</enum>
+                      </property>
+                      <layout class="QVBoxLayout" name="verticalLayout_100">
+                       <property name="spacing">
+                        <number>0</number>
+                       </property>
+                       <property name="leftMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="topMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="rightMargin">
+                        <number>0</number>
+                       </property>
+                       <property name="bottomMargin">
+                        <number>0</number>
+                       </property>
+                       <item>
+                        <widget class="QLabel" name="time_label">
+                         <property name="maximumSize">
+                          <size>
+                           <width>16777215</width>
+                           <height>20</height>
+                          </size>
+                         </property>
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>10</pointsize>
+                          </font>
+                         </property>
+                         <property name="text">
+                          <string>Time</string>
+                         </property>
+                        </widget>
+                       </item>
+                       <item>
+                        <widget class="QLineEdit" name="time_edit">
+                         <property name="font">
+                          <font>
+                           <family>Mitr SemiBold</family>
+                           <pointsize>12</pointsize>
+                          </font>
+                         </property>
+                        </widget>
                        </item>
                       </layout>
                      </widget>
@@ -3096,10 +3190,11 @@
                         </widget>
                        </item>
                        <item>
-                        <widget class="QComboBox" name="comboBox">
+                        <widget class="QComboBox" name="status_combobox">
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
+                           <pointsize>12</pointsize>
                           </font>
                          </property>
                          <item>
@@ -3118,17 +3213,20 @@
                      </widget>
                     </item>
                     <item>
-                     <spacer name="verticalSpacer_3">
-                      <property name="orientation">
-                       <enum>Qt::Vertical</enum>
+                     <widget class="QLabel" name="status_update_check_label">
+                      <property name="font">
+                       <font>
+                        <family>Mitr SemiBold</family>
+                        <pointsize>12</pointsize>
+                       </font>
                       </property>
-                      <property name="sizeHint" stdset="0">
-                       <size>
-                        <width>20</width>
-                        <height>40</height>
-                       </size>
+                      <property name="styleSheet">
+                       <string notr="true">color: rgb(0, 170, 0);</string>
                       </property>
-                     </spacer>
+                      <property name="text">
+                       <string/>
+                      </property>
+                     </widget>
                     </item>
                     <item>
                      <widget class="QFrame" name="frame_30">
@@ -3161,7 +3259,7 @@
                         <number>0</number>
                        </property>
                        <item>
-                        <widget class="QPushButton" name="pushButton">
+                        <widget class="QPushButton" name="loaddb_btn">
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
@@ -3189,7 +3287,7 @@
                         </spacer>
                        </item>
                        <item>
-                        <widget class="QPushButton" name="pushButton_2">
+                        <widget class="QPushButton" name="update_btn">
                          <property name="font">
                           <font>
                            <family>Mitr SemiBold</family>
@@ -3352,7 +3450,7 @@
                           </font>
                          </property>
                          <property name="text">
-                          <string>MONITOR 1</string>
+                          <string>MONITOR 1 ( Small Monitor )</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
@@ -3432,7 +3530,7 @@
                           </font>
                          </property>
                          <property name="text">
-                          <string>MONITOR 2</string>
+                          <string>MONITOR 2 ( Big Monitor )</string>
                          </property>
                          <property name="alignment">
                           <set>Qt::AlignCenter</set>
