@@ -218,19 +218,90 @@
 		border-radius: 10px;
 		color: #F7F7F7;
 }
-
+#return_status_label{
+	color: rgb(0, 170, 0);
+}
 /*= END
 ==================================================== */
 /*= Style for edit page START
 ==================================================== */
 #edit_page {
-		background-color: #eaeaea;
+	background-color: #eaeaea;
     }
 #frame_14{
-		background-color: #fff;
-		border-radius: 20px;
-    }
-
+	background-color: #fff;
+	border-radius: 20px;
+}
+#loaddb_btn{
+	border: none;
+	padding: 10px;
+	background-color: #1A1C22;
+	border-radius: 10px;
+	color: #F7F7F7;
+}
+#loaddb_btn:hover{
+	border: none;
+	padding: 10px;
+	background-color: #580EF6;
+	border-radius: 10px;
+	color: #F7F7F7;
+}
+#update_btn{
+	border: none;
+	padding: 10px;
+	background-color: #1A1C22;
+	border-radius: 10px;
+	color: #F7F7F7;
+}
+#update_btn:hover{
+	border: none;
+	padding: 10px;
+	background-color: #580EF6;
+	border-radius: 10px;
+	color: #F7F7F7;
+}
+#id_edit{
+	border: none;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 10px;
+	padding-left: 10px;
+}
+#zone_edit{
+	border: none;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 10px;
+	padding-left: 10px;
+}
+#bay_edit{
+	border: none;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 10px;
+	padding-left: 10px;
+}
+#lot_edit{
+	border: none;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 10px;
+	padding-left: 10px;
+}
+#license_edit{
+	border: none;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 10px;
+	padding-left: 10px;
+}
+#time_edit{
+	border: none;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 10px;
+	padding-left: 10px;
+}
 /*= END
 ==================================================== */
 /*= Style for monitor page START
