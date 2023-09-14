@@ -1,7 +1,7 @@
 /*= Style for Mainwindow START
 ==================================================== */
 #Change_Bay {
-	background-color: #4682B4
+	background-color: #000000;
     }
 /*= END
 ==================================================== */
@@ -9,7 +9,7 @@
 /*= Style for  content_now_frame START
 ==================================================== */
 #content_now_frame{
-    background-color: #87CEFA;
+    background-color: #580EF6;
     border-radius: 20px;
 }
 /*= END
@@ -18,7 +18,7 @@
 /*= Style for  content_new_frame START
 ==================================================== */
 #content_new_frame{
-    background-color: #87CEFA;
+    background-color: #580EF6;
     border-radius: 20px;
 }
 /*= END
@@ -57,3 +57,69 @@
 }
 /*= END
 ==================================================== */
+
+/*= Style for  load_db_btn START
+==================================================== */
+#load_db_btn{
+    border: none;
+	padding: 10px;
+    background-color: #580EF6;
+    color: #F0F8FF;
+    border-radius: 20px;
+}
+#load_db_btn:hover{
+    border: none;
+	padding: 10px;
+    background-color: #F0F8FF;
+    color: #000000;
+    border-radius: 20px;
+}
+#save_db_btn{
+    border: none;
+	padding: 10px;
+    background-color: #580EF6;
+    color: #F0F8FF;
+    border-radius: 20px;
+}
+#save_db_btn:hover{
+    border: none;
+	padding: 10px;
+    background-color: #F0F8FF;
+    color: #000000;
+    border-radius: 20px;
+}
+#accept_new_btn{
+    border: none;
+	padding: 10px;
+    background-color: #580EF6;
+    color: #F0F8FF;
+    border-radius: 20px;
+}
+#accept_new_btn:hover{
+    border: none;
+	padding: 10px;
+    background-color: #F0F8FF;
+    color: #000000;
+    border-radius: 20px;
+}
+#label{
+    color: #F0F8FF;
+}
+#lineEdit{
+    border: none;
+    padding: 10px;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 20px;
+}
+#status_check_label{
+    color: rgb(0, 170, 0);
+}
+/*= END
+==================================================== */
+#label_2{
+    color: #F7F7F7;
+}
+#label_3{
+    color: #F7F7F7;
+}
