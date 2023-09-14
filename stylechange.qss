@@ -1,13 +1,59 @@
 /*= Style for Mainwindow START
 ==================================================== */
 #Change_Bay {
-	background-color: #1A1C22
+	background-color: #4682B4
     }
 /*= END
 ==================================================== */
 
-/*= Style for  START
+/*= Style for  content_now_frame START
+==================================================== */
+#content_now_frame{
+    background-color: #87CEFA;
+    border-radius: 20px;
+}
+/*= END
 ==================================================== */
 
+/*= Style for  content_new_frame START
+==================================================== */
+#content_new_frame{
+    background-color: #87CEFA;
+    border-radius: 20px;
+}
+/*= END
+==================================================== */
+
+/*= Style for  frame_9 START
+==================================================== */
+#frame_9{
+    background-color: #F0F8FF;
+    border-radius: 20px;
+}
+/*= END
+==================================================== */
+
+/*= Style for  frame_10 START
+==================================================== */
+#frame_10{
+    background-color: #F0F8FF;
+    border-radius: 20px;
+}
+/*= END
+==================================================== */
+/*= Style for  frame_15 START
+==================================================== */
+#frame_15{
+    background-color: #F0F8FF;
+    border-radius: 20px;
+}
+/*= END
+==================================================== */
+/*= Style for  frame_16 START
+==================================================== */
+#frame_16   {
+    background-color: #F0F8FF;
+    border-radius: 20px;
+}
 /*= END
 ==================================================== */
