@@ -103,11 +103,6 @@ try:
     for lot_h in result:
         g.append(lot_h[0])
     # print(h)
-    # db_cursor.execute("SELECT zone FROM zone ")
-    # result = db_cursor.fetchall()
-    # for zone in result:
-    #     zone_order.append(zone[0])
-    # print(zone_order)
 
     list_input = input("Parking Bay: ")
     if list_input  in bay_order:
@@ -135,13 +130,19 @@ try:
         
         if list_a == "y":
             parked_lot.clear()
-            random_bay = random.choice(bay_order)
+            if list_input in z1:
+                random_bay = random.choice([bay for bay in bay_order if bay not in z1])
+                selected_zone = z2[random_bay]
+            elif list_input in z2:
+                random_bay = random.choice([bay for bay in bay_order if bay not in z2])
+                selected_zone = z1[random_bay]
+
             random_lot = random.choice(nz[random_bay])
             nz[random_bay].remove(random_lot)
-            selected_zone = z[random_bay]
-            print("Bay: ",random_bay)
-            print("Lot: ",random_lot)
-            print("Zone: ",selected_zone)
+            print("Bay: ", random_bay)
+            print("Lot: ", random_lot)
+            print("Zone: ", selected_zone)
+
 
         else:
             print("Thank you.")
