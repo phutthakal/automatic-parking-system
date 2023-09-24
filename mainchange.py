@@ -40,6 +40,8 @@ nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
 oz={"A":oha,"F":ohf,"C":ohc,"B":ohb,"G":ohg,"D":ohd,"H":ohh,"E":ohe}
 
 z={"A":zone_order[0],"B":zone_order[0],"C":zone_order[1],"D":zone_order[1],"E":zone_order[1],"F":zone_order[1],"G":zone_order[1],"H":zone_order[1]}
+z1={"A":zone_order[0],"B":zone_order[0]}
+z2={"C":zone_order[1],"D":zone_order[1],"E":zone_order[1],"F":zone_order[1],"G":zone_order[1],"H":zone_order[1]}
 
 mydb = mc.connect(
         host="localhost",
@@ -215,6 +217,7 @@ class MainBigWindow(QMainWindow):
 
     def fetch_data(self):
         card_id = self.ui.lineEdit.text()
+        wrong_bay = self.ui.lineEdit_2.text()
         
         try:
             mydb = mc.connect(
@@ -225,15 +228,25 @@ class MainBigWindow(QMainWindow):
             )
             mycursor = mydb.cursor()
             mycursor.execute("SELECT card_id, user_height, user_license_plate FROM card WHERE card_id=%s",(card_id,))
-            data = mycursor.fetchone()
+            data1 = mycursor.fetchone()
+            mycursor2 = mydb.cursor()
+            mycursor2.execute("SELECT number, bay_name, parked_zone FROM lot WHERE lot_id=%s",(card_id,))
+            data2 = mycursor2.fetchone()
 
-            if data:
-                self.ui.label_11.setText(str(data[0]))
-                self.ui.label_12.setText(str(data[1]))
-                self.ui.label_13.setText(str(data[2]))
-                self.ui.status_check_label.setText("Fetch Data Complete")
+            if data1:
+                self.ui.label_11.setText(str(data1[0]))
+                self.ui.label_12.setText(str(data1[1]))
+                self.ui.label_13.setText(str(data1[2]))
+                self.ui.status_check_label.setText("Fetch DB ID Complete")
             else:
-                self.ui.status_check_label.setText("No Data This ID")
+                self.ui.status_check_label.setText("enter card ID")
+            if data2:
+                self.ui.label_28.setText(str(data2[2]))
+                self.ui.label_29.setText(str(data2[1]))
+                self.ui.label_30.setText(str(data2[0]))
+                self.ui.status_check_label.setText("Fetch DB by ID Complete")
+            else:
+                self.ui.status_check_label.setText("enter card ID")
 
 
         except:
