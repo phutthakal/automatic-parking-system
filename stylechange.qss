@@ -1,7 +1,7 @@
 /*= Style for Mainwindow START
 ==================================================== */
 #Change_Bay {
-	background-color: #1A1C22;
+	background-color: #000000;
     }
 /*= END
 ==================================================== */
@@ -106,6 +106,16 @@
     color: #F0F8FF;
 }
 #lineEdit{
+    border: none;
+    padding: 10px;
+	color: #F7F7F7;
+	background-color: #580EF6;
+	border-radius: 20px;
+}
+#label_40{
+    color: #F0F8FF;
+}
+#lineEdit_2{
     border: none;
     padding: 10px;
 	color: #F7F7F7;
