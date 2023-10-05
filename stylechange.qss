@@ -102,6 +102,20 @@
     color: #000000;
     border-radius: 20px;
 }
+#clear_btn{
+    border: none;
+	padding: 10px;
+    background-color: #580EF6;
+    color: #F0F8FF;
+    border-radius: 20px;
+}
+#clear_btn:hover{
+    border: none;
+	padding: 10px;
+    background-color: #F0F8FF;
+    color: #000000;
+    border-radius: 20px;
+}
 #label{
     color: #F0F8FF;
 }
@@ -115,21 +129,40 @@
 #label_40{
     color: #F0F8FF;
 }
-#lineEdit_2{
+#wrong_zone_line_edit{
     border: none;
     padding: 10px;
 	color: #F7F7F7;
 	background-color: #580EF6;
 	border-radius: 20px;
 }
-#status_check_label{
+#status_check_label1{
     color: rgb(0, 170, 0);
 }
+
+
+
+
 /*= END
 ==================================================== */
-#label_2{
+#header_now_label{
     color: #F7F7F7;
 }
-#label_3{
+#header_new_lot_label{
     color: #F7F7F7;
+}
+#new_zone_label{
+    color: rgb(0, 170, 0);
+}
+#new_bay_label{
+    color: rgb(0, 170, 0);
+}
+#new_lot_label{
+    color: rgb(0, 170, 0);
+}
+#comboBox{
+    border: none;
+    padding: 10px;
+	color: #F7F7F7;
+	background-color: #580EF6;
 }
