@@ -1,19 +1,20 @@
 import sys
-from PyQt5 import QtCore, QtWidgets
-from PyQt5.QtWidgets import QTableWidgetItem
+import time
+from PyQt5 import QtCore, QtGui
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget
-from PyQt5.QtCore import pyqtSlot, QFile, QTextStream
+from PyQt5.QtCore import pyqtSlot, QFile, QTextStream 
 import mysql.connector as mc
-import requests
+from PyQt5.QtCore import QTimer
+import mysql.connector
+import random
 
-from refresh_data import *
-from Mainwindow3 import Ui_MainWindow
-from mainbig import *
-from mainsmall import *
+from Change import *
 
-bay_order=["A","F","C","B","G","D","H","E"]
-zone_order=["1","2"]
+
+bay_order=[]
 parked_lot=[]
+zone_order=['1','2']
+user_data=[]
 
 a=[]
 b=[]
@@ -33,370 +34,397 @@ ohf=[]
 ohg=[]
 ohh=[]
 
+
+# nz = normal zone
+nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
+nz1={"A":a,"B":b}
+nz2={"C":c,"D":d,"E":e,"F":f,"G":g,"H":h}
+# oz = over heigh zone
+oz={"A":oha,"F":ohf,"C":ohc,"B":ohb,"G":ohg,"D":ohd,"H":ohh,"E":ohe}
+oz1={"A":oha,"B":ohb}
+oz2={"C":ohc,"D":ohd,"E":ohe,"F":ohf,"G":ohg,"H":ohh}
+#bay
+bay_zone1={"A":a,"B":b}
+bay_zone2={"C":c,"D":d,"E":e,"F":f,"G":g,"H":h}
+#lot
+olot={"A":a,"B":b}
+nlot={"C":c,"D":d,"E":e,"F":f,"G":g,"H":h}
+
+z={"A":zone_order[0],"B":zone_order[0],"C":zone_order[1],"D":zone_order[1],"E":zone_order[1],"F":zone_order[1],"G":zone_order[1],"H":zone_order[1]}
+z1={"A":zone_order[0],"B":zone_order[0]}
+z2={"C":zone_order[1],"D":zone_order[1],"E":zone_order[1],"F":zone_order[1],"G":zone_order[1],"H":zone_order[1]}
+
 mydb = mc.connect(
         host="localhost",
         user="root",
         password="",
         database="carlot"
     )
-#bay_a : bay_id='1'
+
 mycursor = mydb.cursor()
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='1' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    a.append(row[0])
+mycursor.execute("SELECT bay_name FROM bay")
+result = mycursor.fetchall()
+for row in result:
+    bay_order.append(row[0])
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='1' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_a in result:
+    oha.append(lot_a[0])
+# print(oha)
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='1' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_a in result:
+    a.append(lot_a[0])
+# print(a)
     
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='2' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_b in result:
+    ohb.append(lot_b[0])
+# print(ohb)
 
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='1' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    oha.append(row[0])
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='2' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_b in result:
+    b.append(lot_b[0])
+# print(b)
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='3' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_c in result:
+    ohc.append(lot_c[0])
+# print(ohc)
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='3' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_c in result:
+    c.append(lot_c[0])
+# print(c)
     
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='4' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_d in result:
+    ohd.append(lot_d[0])
+# print(ohd)
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='4' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_d in result:
+    d.append(lot_d[0])
+# print(d)
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='5' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_e in result:
+    ohe.append(lot_e[0])
+# print(ohe)
+
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='5' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_e in result:
+    e.append(lot_e[0])
+# print(e)
     
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='6' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_f in result:
+    ohf.append(lot_f[0])
+# print(ohf)
 
-#bay_b : bay_id='2'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='2' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    b.append(row[0])
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='6' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_f in result:
+    f.append(lot_f[0])
+# print(f)
 
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='2' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohb.append(row[0])
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='7' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_g in result:
+    ohg.append(lot_g[0])
+# print(ohg)
 
-#bay_c : bay_id='3'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='3' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    c.append(row[0])
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='7' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_g in result:
+    g.append(lot_g[0])
+# print(g)
+    
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='8' AND parking_type_id='1' ''')
+result = mycursor.fetchall()
+for lot_h in result:
+    ohh.append(lot_h[0])
+# print(ohh)
 
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='3' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohc.append(row[0])
+mycursor.execute('''
+                    SELECT number FROM lot 
+                    WHERE status_id='1' AND bay_id='8' AND parking_type_id='0' ''')
+result = mycursor.fetchall()
+for lot_h in result:
+    h.append(lot_h[0])
+# print(h)
 
-#bay_d : bay_id='4'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='4' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    d.append(row[0])
-
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='4' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohd.append(row[0])
-
-#bay_e : bay_id='5'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='5' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    e.append(row[0])
-
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='5' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohe.append(row[0])
-
-#bay_f : bay_id='6'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='6' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    f.append(row[0])
-
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='6' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohf.append(row[0])
-
-#bay_g : bay_id='7'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='7' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    g.append(row[0])
-
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='7' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohg.append(row[0])
-
-#bay_h : bay_id='8'
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='8' AND parking_type_id='0'")
-normal_zone_result=mycursor.fetchall()
-for row in normal_zone_result:
-    h.append(row[0])
-
-mycursor.execute("SELECT number FROM lot WHERE status_id='1' AND bay_id='8' AND parking_type_id='1'")
-over_zone_result = mycursor.fetchall()
-for row in over_zone_result:
-    ohh.append(row[0])
-
-# nz = normal zone
-nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
-
-# oz = over heigh zone
-oz={"A":oha,"F":ohf,"C":ohc,"B":ohb,"G":ohg,"D":ohd,"H":ohh,"E":ohe}
-
-#Parking Zone
-z={"A":zone_order[0],"B":zone_order[0],"C":zone_order[1],"D":zone_order[1],"E":zone_order[1],"F":zone_order[1],"G":zone_order[1],"H":zone_order[1]}
-
-class MainWindow(QMainWindow):
+class MainBigWindow(QMainWindow):
     def __init__(self):
-        super(MainWindow, self).__init__()
+        super(MainBigWindow, self).__init__()
 
-        self.ui = Ui_MainWindow()
+        self.ui = Ui_Change_Bay()
         self.ui.setupUi(self)
-        self.ui.icon_only_widget.hide()
-        self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.full_home_btn.setChecked(True)
-        self.ui.stacked_bay.setCurrentIndex(0)
-        self.ui.locasort_a_btn.setChecked(True)
-        self.ui.tableWidget.clicked.connect(self.getitem)
-        self.ui.loaddb_btn.clicked.connect(self.loaddb)
-        self.ui.update_btn.clicked.connect(self.updatedb)
-        self.ui.monitor1_btn.clicked.connect(self.smallscreen)
-        self.ui.monitor2_btn.clicked.connect(self.bigscreen)
-        self.ui.reload_btn.clicked.connect(self.load_data_api)
-        self.ui.accept_btn.clicked.connect(self.get_lot)
-        self.ui.return_btn.clicked.connect(self.return_lot)
-    
-    # def on_search_btn_clicked(self):
-    #     self.ui.stackedWidget.setCurrentIndex(5)
-    #     search_text = self.ui.search_input.text().strip()
-    #     if search_text:
-
-    def on_listsort_btn_clicked(self):
-        self.ui.stackedWidget.setCurrentIndex(0)
+        # self.showFullScreen()
         
-    def on_locationsort_btn_clicked(self):
-        self.ui.stackedWidget.setCurrentIndex(6)
+        #flamelesswindow
+        # self.setWindowFlags(QtCore.Qt.WindowType.FramelessWindowHint)
+        self.ui.load_db_btn.clicked.connect(self.fetch_data)
+        self.ui.accept_new_btn.clicked.connect(self.change_lot)
+        self.ui.clear_btn.clicked.connect(self.clear_data)
+
     
-    def on_icon_home_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(0)
-
-    def on_full_home_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(0)
-
-    def on_icon_dashboard_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(1)
-
-    def on_full_dashboard_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(1)
-
-    def on_icon_accept_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(2)
-
-    def on_full_accept_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(2)
-
-    def on_icon_edit_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(3)
-
-    def on_full_edit_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(3)
-
-    def on_icon_monitor_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(4)
-
-    def on_full_monitor_btn_toggled(self):
-        self.ui.stackedWidget.setCurrentIndex(4)
-
-    #locationsort_page_btn
-    def on_locasort_a_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(0)
-        check=[]
-
-        mycursor = mydb.cursor()
-        mycursor.execute("SELECT number FROM lot WHERE status_id='2' AND bay_id='1'")
-        lot_db = mycursor.fetchall()
-
-        for row in lot_db:
-            check.append(row[0])
-
-        print(check)
-
-        for item in check:
-            if item != "101":
-                label_name = "label_a" + item
-                label_widget = getattr(self.ui, label_name, None)
-                if label_widget:
-                    label_widget.setStyleSheet("background-color: #580EF6;border-radius: 10px;")
-                
-            
-        
-    def on_locasort_b_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(1)
-    def on_locasort_c_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(2)
-    def on_locasort_d_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(3)
-    def on_locasort_e_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(4)
-    def on_locasort_f_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(5)
-    def on_locasort_g_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(6)
-    def on_locasort_h_btn_toggled(self):
-        self.ui.stacked_bay.setCurrentIndex(7)
-
-
-    def loaddb(self):
-        while True:
+    def fetch_data(self):
+        card_id = self.ui.lineEdit.text()
+        try:
             mydb = mc.connect(
-                    host="localhost",
-                    user="root",
-                    password="",
-                    database="carlot"
-                )
-            mycursor = mydb.cursor()
-            mycursor.execute("SELECT * FROM parked_store")
-            result = mycursor.fetchall()
-
-            self.ui.tableWidget.setRowCount(0)
-
-            for row_number, row_data in enumerate(result):
-                self.ui.tableWidget.insertRow(row_number)
-
-                for column_number, data in enumerate(row_data):
-                    self.ui.tableWidget.setItem(row_number, column_number, QTableWidgetItem(str(data)))
-
-            self.ui.status_update_check_label.setText("Load Complete")
-            break
-
-    def getitem(self):
-        row = self.ui.tableWidget.currentRow()
-
-        rowItemID = self.ui.tableWidget.item(row, 0).text()
-        rowItemBay = self.ui.tableWidget.item(row, 1).text()
-        rowItemLicenseplate = self.ui.tableWidget.item(row, 2).text()
-        rowItemZone = self.ui.tableWidget.item(row, 3).text()
-        rowItemLot = self.ui.tableWidget.item(row, 4).text()
-        rowItemStatus = self.ui.tableWidget.item(row, 5).text()
-        rowItemTime = self.ui.tableWidget.item(row, 6).text()
-
-        self.ui.id_edit.setText(rowItemID)
-        self.ui.zone_edit.setText(rowItemZone)
-        self.ui.bay_edit.setText(rowItemBay)
-        self.ui.lot_edit.setText(rowItemLot)
-        self.ui.license_edit.setText(rowItemLicenseplate)
-        self.ui.status_combobox.setCurrentText(rowItemStatus)
-        self.ui.time_edit.setText(rowItemTime)
-
-    def updatedb(self):
-        updateId = self.ui.id_edit.text()
-        updateZone = self.ui.zone_edit.text()
-        updateBay = self.ui.bay_edit.text()
-        updateLot = self.ui.lot_edit.text()
-        updateLicenseplate = self.ui.license_edit.text()
-        updateStatus = self.ui.status_combobox.currentText()
-
-        mydb = mc.connect(
-            host="localhost",
-            user="root",
-            password="",
-            database="carlot"
-        )
-
-        mycursor = mydb.cursor()
-        value = (updateBay,updateLicenseplate,updateZone, updateLot, updateStatus, updateId)
-        updatedb = "UPDATE data SET bay = %s, noplate = %s, zone = %s, nolot = %s, status = %s WHERE id = %s"
-
-        try:
-            mycursor.execute(updatedb, value)
-            mydb.commit()
-            self.ui.status_update_check_label.setText("Update Complete")
-        except:
-            self.ui.status_update_check_label.setText("Update Incomplete")
-
-    def smallscreen(self):
-        self.window = MainSmallWindow()    
-        self.window.show()
-    
-    def bigscreen(self):
-        self.mainbig = MainBigWindow()
-        self.mainbig.show()
-    
-    def load_data_api(self):
-        response = requests.get('http://127.0.0.1:8000/api/test/users')
-        api_noplate = response.json()[0]['license_plate']
-        api_height = str(response.json()[0]['height'])
-        
-        self.ui.api_lcp_label.setText(api_noplate)
-        self.ui.api_height_label.setText(api_height)
-
-    def refresh_data():
-            while True:
-                response = requests.get('http://127.0.0.1:8000/api/test/users')
-                api_height = response.json()[0]['height']
-                return api_height
+                host="localhost",
+                user="root",
+                password="",
+                database="carlot"
+            )
+            mycursor2 = mydb.cursor()
+            mycursor2.execute('''
+            SELECT card.card_id, card.user_height, card.user_license_plate, lot.parked_zone, bay.bay_name, lot.number, lot.lot_id
+            FROM lot
+            INNER JOIN card ON lot.lot_id = card.lot_id                  
+            INNER JOIN bay ON lot.bay_id = bay.bay_id
+            WHERE card_id=%s
+            ''', (card_id,))
+            data = mycursor2.fetchone()
+            print(data)
             
-    def get_lot(self):
-        car_height = refresh_data()
-        parking_lot = None
-        while True:
-            for _ in range(8):
-                if car_height>=190:
-                    removed_element = bay_order.pop(0)
-                    bay_order.append(removed_element)
-                    if len(oz[removed_element])==0:
-                        continue
-                    parking_lot = oz[removed_element].pop(0)
-                    
-                    parked_lot.append(parking_lot)
-                    print("Your Parking zone is : ",z[removed_element[0]])
-                    print("Your bay is :",removed_element)
-                    print("your parking lot is : ",parking_lot)
-                    self.ui.accept_show_zone_label.setText(z[removed_element[0]])
-                    self.ui.accept_show_bay_label.setText(removed_element)
-                    self.ui.accept_show_lot_label.setText(parking_lot)
-                    print("parked lot check:",parked_lot)
-            
-                    return parked_lot
+            if data:
+                self.ui.label_11.setText(str(data[0]))
+                self.ui.label_12.setText(str(data[1]))
+                self.ui.label_13.setText(str(data[2]))
                 
-                    
-                else:
-                    removed_element = bay_order.pop(0)            
-                    bay_order.append(removed_element)                              
-                    if len(nz[removed_element])==0:
-                        continue
-                    parking_lot = nz[removed_element].pop(0)
-                    parked_lot.append(parking_lot)
-                    print("Your Parking zone is : ",z[removed_element[0]])         
-                    print("Your bay is :",removed_element)
-                    print("your parking lot is : ",parking_lot)
-                    self.ui.accept_show_zone_label.setText(z[removed_element[0]])
-                    self.ui.accept_show_bay_label.setText(removed_element)
-                    self.ui.accept_show_lot_label.setText(parking_lot)
-                    print("parked lot check:",parked_lot)
-                    return parked_lot
-            return parking_lot
-    
-    def return_lot(self):
-        lot_no=self.ui.return_edit.text()
-        try:
-            if lot_no in parked_lot:
-                if lot_no[1]=="1":
-                    oz[lot_no[0]].append(lot_no)
-                else:
-                    nz[lot_no[0]]
-                parked_lot.remove(lot_no)
-                self.ui.return_status_label.setText("Return Lot Complete")
-                return True
-            return False
+                self.ui.label_28.setText(str(data[3]))
+                self.ui.label_29.setText(str(data[4]))
+                self.ui.label_30.setText(str(data[5]))
+                self.ui.status_check_label1.setText("ดึงข้อมูลสำเร็จ")
+            else:
+                self.ui.status_check_label1.setText("ไม่มีข้อมูล")
             
-        except:
-            self.ui.return_status_label.setText("Return Lot Incomplete")
+            for all_data in data:
+                user_data.append(all_data)  
 
+        except:
+            self.ui.status_check_label1.setText("กรุณากรอกการ์ดไอดี")
+        
+
+    def change_lot(self):
+        # wrong_zone = self.ui.comboBox.setCurrentText()
+        wrong_zone = self.ui.wrong_zone_line_edit.text()
+        try:
+            if wrong_zone=="1":
+                if user_data[1] <= "190" and user_data[4] in z2:
+                    random_bay = random.choice([bay for bay in bay_order if bay not in z2])
+                    new_zone = z1[random_bay]
+                    
+                    random_lot = random.choice(nz[random_bay])
+                    nz[random_bay].remove(random_lot)
+                elif user_data[1] > "190" and user_data[4] in z2:
+                    random_bay = random.choice([bay for bay in bay_order if bay not in z2])
+                    new_zone = z1[random_bay]
+
+                    random_lot = random.choice(oz[random_bay])
+                    oz[random_bay].remove(random_lot)
+
+                #replace_new zone,bay,lot in list user_data=[]
+                user_data[3] = int(new_zone)
+                user_data[4] = random_bay
+                user_data[5] = random_lot
+
+                old_lot_id = user_data[5]
+                # print("ก่อนดึง db ใหม่ :",old_lot_id)
+
+                mydb = mc.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="carlot")
+
+                mycursor2 = mydb.cursor()
+                mycursor2.execute('''
+                                    SELECT lot_id FROM lot WHERE number=%s
+                                    ''',(old_lot_id,))
+                data_id = mycursor2.fetchone()
+
+                user_data[6] = data_id[0]
+                
+                
+                # print("หลังดึง",data_id)
+                # print("ดึงมาใหม่รอบ 2 หลังจากดึง :",user_data)
+
+                if user_data:
+                    self.ui.new_card_id_label.setText(str(user_data[0]))
+                    self.ui.new_height_label.setText(str(user_data[1]))
+                    self.ui.new_license_p_label.setText(str(user_data[2]))
+                    
+                    self.ui.new_zone_label.setText(str(user_data[3]))
+                    self.ui.new_bay_label.setText(str(user_data[4]))
+                    self.ui.new_lot_label.setText(str(user_data[5]))
+                    self.ui.status_check_label1.setText("New lot already")
+                else:
+                    self.ui.status_check_label1.setText("New lot error")
+
+                #update data on database
+                user_id = user_data[0]
+                update_new_lot_id = user_data[6]
+                mycursor = mydb.cursor()
+                value = (update_new_lot_id,user_id)
+                updatedb =('''
+                           UPDATE card SET lot_id = %s WHERE card_id=%s''')
+
+                try:
+                    mycursor.execute(updatedb, value)
+                    mydb.commit()
+                    self.ui.status_check_label1.setText("อัพเดทฐานข้อมูลสำเร็จ")
+                except:
+                    self.ui.status_check_label1.setText("อัพเดทฐานข้อมูลไม่สำเร็จ")
+                # print("data after update :",user_data)
+                user_data.clear()
+                # print(user_data)
+
+            elif wrong_zone=="2":
+                
+                if user_data[1] <= "190" and user_data[4] in z1:
+                    random_bay = random.choice([bay for bay in bay_order if bay not in z1])
+                    new_zone = z2[random_bay]
+                    
+                    random_lot = random.choice(nz[random_bay])
+                    nz[random_bay].remove(random_lot)
+                elif user_data[1] > "190" and user_data[4] in z1:
+                    random_bay = random.choice([bay for bay in bay_order if bay not in z1])
+                    new_zone = z2[random_bay]
+
+                    random_lot = random.choice(oz[random_bay])
+                    oz[random_bay].remove(random_lot)
+                
+                #replace_new zone,bay,lot in list user_data=[]
+                user_data[3] = int(new_zone)
+                user_data[4] = random_bay
+                user_data[5] = random_lot
+
+                old_lot_id = user_data[5]
+                # print("ก่อนดึง db ใหม่ :",old_lot_id)
+
+                mydb = mc.connect(
+                host="localhost",
+                user="root",
+                password="",
+                database="carlot")
+
+                mycursor2 = mydb.cursor()
+                mycursor2.execute('''
+                                    SELECT lot_id FROM lot WHERE number=%s
+                                    ''',(old_lot_id,))
+                data_id = mycursor2.fetchone()
+
+                user_data[6] = data_id[0]
+                # print("ดึงมาใหม่รอบ 2 หลังจากดึง :",user_data)
+
+                if user_data:
+                    self.ui.new_card_id_label.setText(str(user_data[0]))
+                    self.ui.new_height_label.setText(str(user_data[1]))
+                    self.ui.new_license_p_label.setText(str(user_data[2]))
+                    
+                    self.ui.new_zone_label.setText(str(user_data[3]))
+                    self.ui.new_bay_label.setText(str(user_data[4]))
+                    self.ui.new_lot_label.setText(str(user_data[5]))
+                    self.ui.status_check_label1.setText("ได้ช่องจอดใหม่เรียบร้อย")
+                else:
+                    self.ui.status_check_label1.setText("การรับช่องจอดมีปัญหา")
+                
+                #update data on database
+                user_id = user_data[0]
+                update_new_lot_id = user_data[6]
+                mycursor = mydb.cursor()
+                value = (update_new_lot_id,user_id)
+                updatedb =('''
+                           UPDATE card SET lot_id = %s WHERE card_id=%s''')
+
+                try:
+                    mycursor.execute(updatedb, value)
+                    mydb.commit()
+                    self.ui.status_check_label1.setText("อัพเดทฐานข้อมูลสำเร็จ")
+                except:
+                    self.ui.status_check_label1.setText("อัพเดทฐานข้อมูลไม่สำเร็จ")
+                # print("data after update :",user_data)
+                user_data.clear()
+                # print(user_data)
+        except:
+            self.ui.status_check_label1.setText("Can't get new lot.")
+
+    def clear_data(self):
+        self.ui.lineEdit.clear()
+        self.ui.wrong_zone_line_edit.clear()
+        #left top
+        self.ui.label_11.clear()
+        self.ui.label_12.clear()
+        self.ui.label_13.clear()
+        #right top
+        self.ui.new_card_id_label.clear()
+        self.ui.new_height_label.clear()
+        self.ui.new_license_p_label.clear()
+        #left bottom
+        self.ui.label_28.clear()
+        self.ui.label_29.clear()
+        self.ui.label_30.clear()
+        #right bottom
+        self.ui.new_bay_label.clear()
+        self.ui.new_lot_label.clear()
+        self.ui.new_zone_label.clear()
+        #status
+        self.ui.status_check_label1.clear()
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
-
-    style_file = QFile("style2.qss")
+    
+    style_file = QFile("stylechange.qss")
     style_file.open(QFile.ReadOnly | QFile.Text)
     style_stream = QTextStream(style_file)
     app.setStyleSheet(style_stream.readAll())
-
-    window = MainWindow()
-    window.show()
-
+    
+    bigwindow = MainBigWindow()
+    bigwindow.show()
+    
     sys.exit(app.exec())
+    
