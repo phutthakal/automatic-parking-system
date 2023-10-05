@@ -85,11 +85,11 @@
                  <property name="font">
                   <font>
                    <family>Mitr SemiBold</family>
-                   <pointsize>10</pointsize>
+                   <pointsize>12</pointsize>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Card ID :</string>
+                  <string>การ์ดไอดี :</string>
                  </property>
                 </widget>
                </item>
@@ -112,16 +112,16 @@
                  <property name="font">
                   <font>
                    <family>Mitr SemiBold</family>
-                   <pointsize>10</pointsize>
+                   <pointsize>12</pointsize>
                   </font>
                  </property>
                  <property name="text">
-                  <string>Wrong Bay :</string>
+                  <string>โซนที่เข้าผิด :</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QLineEdit" name="lineEdit_2">
+                <widget class="QLineEdit" name="wrong_zone_line_edit">
                  <property name="font">
                   <font>
                    <family>Mitr SemiBold</family>
@@ -146,11 +146,11 @@
               </spacer>
              </item>
              <item>
-              <widget class="QLabel" name="status_check_label">
+              <widget class="QLabel" name="status_check_label1">
                <property name="font">
                 <font>
                  <family>Mitr SemiBold</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -163,24 +163,11 @@
                <property name="font">
                 <font>
                  <family>Mitr SemiBold</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>Load Data</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="save_db_btn">
-               <property name="font">
-                <font>
-                 <family>Mitr SemiBold</family>
-                 <pointsize>10</pointsize>
-                </font>
-               </property>
-               <property name="text">
-                <string>Save</string>
+                <string>โหลดข้อมูลจากการ์ด</string>
                </property>
               </widget>
              </item>
@@ -189,11 +176,24 @@
                <property name="font">
                 <font>
                  <family>Mitr SemiBold</family>
-                 <pointsize>10</pointsize>
+                 <pointsize>12</pointsize>
                 </font>
                </property>
                <property name="text">
-                <string>Accept New Lot</string>
+                <string>รับช่องจอดใหม่</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="clear_btn">
+               <property name="font">
+                <font>
+                 <family>Mitr SemiBold</family>
+                 <pointsize>12</pointsize>
+                </font>
+               </property>
+               <property name="text">
+                <string>เคลียร์ข้อมูล</string>
                </property>
               </widget>
              </item>
@@ -252,7 +252,7 @@
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <item>
-                 <widget class="QLabel" name="label_2">
+                 <widget class="QLabel" name="header_now_label">
                   <property name="font">
                    <font>
                     <family>Mitr SemiBold</family>
@@ -260,7 +260,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>Now Parking Lot</string>
+                   <string>ช่องจอดปัจจุบัน</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -308,14 +308,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
-                         <string>Card ID</string>
+                         <string>การ์ดไอดี</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -324,14 +324,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
-                         <string>Height</string>
+                         <string>ความสูง</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -340,14 +340,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
-                         <string>License plate</string>
+                         <string>ทะเบียน</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -374,7 +374,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -390,7 +390,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -406,7 +406,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -434,14 +434,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -450,14 +450,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -466,14 +466,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -509,14 +509,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string>โซน</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -525,14 +525,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string>ช่องจอด</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -541,14 +541,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string>หมายเลข</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -575,7 +575,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -591,7 +591,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -607,7 +607,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -635,11 +635,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -648,11 +651,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -661,11 +667,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -730,7 +739,7 @@
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_4">
                 <item>
-                 <widget class="QLabel" name="label_3">
+                 <widget class="QLabel" name="header_new_lot_label">
                   <property name="font">
                    <font>
                     <family>Mitr SemiBold</family>
@@ -738,7 +747,7 @@
                    </font>
                   </property>
                   <property name="text">
-                   <string>New Parking Lot</string>
+                   <string>ช่องจอดใหม่</string>
                   </property>
                   <property name="alignment">
                    <set>Qt::AlignCenter</set>
@@ -786,14 +795,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
-                         <string>Card ID</string>
+                         <string>การ์ดไอดี</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -802,14 +811,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
-                         <string>Height</string>
+                         <string>ความสูง</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -818,14 +827,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
-                         <string>License plate</string>
+                         <string>ทะเบียน</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -852,7 +861,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -868,7 +877,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -884,7 +893,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -908,50 +917,50 @@
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_10">
                       <item>
-                       <widget class="QLabel" name="label_17">
+                       <widget class="QLabel" name="new_card_id_label">
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="label_18">
+                       <widget class="QLabel" name="new_height_label">
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="label_19">
+                       <widget class="QLabel" name="new_license_p_label">
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -987,14 +996,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string>โซน</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -1003,14 +1012,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string>ช่องจอด</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -1019,14 +1028,14 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string>หมายเลข</string>
                         </property>
                         <property name="alignment">
-                         <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
@@ -1053,7 +1062,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -1069,7 +1078,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -1085,7 +1094,7 @@
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
@@ -1109,41 +1118,50 @@
                      </property>
                      <layout class="QVBoxLayout" name="verticalLayout_15">
                       <item>
-                       <widget class="QLabel" name="label_31">
+                       <widget class="QLabel" name="new_zone_label">
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="label_32">
+                       <widget class="QLabel" name="new_bay_label">
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
                       <item>
-                       <widget class="QLabel" name="label_33">
+                       <widget class="QLabel" name="new_lot_label">
                         <property name="font">
                          <font>
                           <family>Mitr SemiBold</family>
-                          <pointsize>12</pointsize>
+                          <pointsize>16</pointsize>
                          </font>
                         </property>
                         <property name="text">
                          <string/>
+                        </property>
+                        <property name="alignment">
+                         <set>Qt::AlignCenter</set>
                         </property>
                        </widget>
                       </item>
