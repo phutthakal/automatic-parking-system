@@ -470,20 +470,18 @@ class MainWindow(QMainWindow):
             if lot_no in parked_lot:
                 for index, row in enumerate(parked_lot):
                     if row == 2:
-                        # print("Updating row at index", index)
-                        
                         # Construct and execute the SQL query to update the row
                         update_query = "UPDATE lot SET status_id = '1' WHERE number = %s"
                         mycursor.execute(update_query, (lot_no,))
                         mydb.commit()
                         
                         print("Update successful for lot number", lot_no)
+                        print(parked_lot)
                         break  # Exit the loop after the first successful update
                 
                 self.ui.return_status_label.setText("อัพเดตสถานะสำเร็จ")
             else:
                 self.ui.return_status_label.setText("ไม่พบเลขล็อตที่ต้องการอัพเดต")
-        
         except :
             self.ui.return_status_label.setText("อัพเดตสถานะไม่สำเร็จ")
 
