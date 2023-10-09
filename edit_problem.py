@@ -464,41 +464,28 @@ class MainWindow(QMainWindow):
 
     def return_lot(self):
         lot_no = self.ui.return_edit.text()
+        
         try:
             # Check if the lot number is in the list of parked_lot
             if lot_no in parked_lot:
-                # Iterate through parked_lot
-                for index, status_id in enumerate(parked_lot):
-                    if status_id == 2:
-                        print("Updating row at index", index)
-                        
-                        # Get the corresponding lot number
-                        lot_number = parked_lot[index + 1]
+                for index, row in enumerate(parked_lot):
+                    if row == 2:
+                        # print("Updating row at index", index)
                         
                         # Construct and execute the SQL query to update the row
                         update_query = "UPDATE lot SET status_id = '1' WHERE number = %s"
-                        mycursor.execute(update_query, (lot_number,))
+                        mycursor.execute(update_query, (lot_no,))
                         mydb.commit()
                         
-                        print(f"Update successful for lot number {lot_number}")
-                        
-                        # Update the status label to reflect the update
-                        self.ui.return_status_label.setText(f"อัพเดตสถานะสำเร็จสำหรับเลขล็อต {lot_number}")
-                        
-                        # Mark the lot as updated in parked_lot
-                        parked_lot[index] = 1
+                        print("Update successful for lot number", lot_no)
                         break  # Exit the loop after the first successful update
-                else:
-                    self.ui.return_status_label.setText("ไม่พบเลขล็อตที่ต้องการอัพเดต")
+                
+                self.ui.return_status_label.setText("อัพเดตสถานะสำเร็จ")
             else:
                 self.ui.return_status_label.setText("ไม่พบเลขล็อตที่ต้องการอัพเดต")
         
-        except mysql.connector.Error as err:
-            self.ui.return_status_label.setText("อัพเดตสถานะไม่สำเร็จ: {}".format(err))
-        except:
-            self.ui.return_status_label.setText("ไม่มีข้อมูล")
-
-
+        except :
+            self.ui.return_status_label.setText("อัพเดตสถานะไม่สำเร็จ")
 
 
     def check_full_lot(self):
