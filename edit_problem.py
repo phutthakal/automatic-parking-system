@@ -4,6 +4,7 @@ from PyQt5.QtWidgets import QTableWidgetItem
 from PyQt5.QtWidgets import QMainWindow, QApplication, QPushButton, QWidget
 from PyQt5.QtCore import pyqtSlot, QFile, QTextStream
 import mysql.connector as mc
+import mysqlx
 import requests
 
 from Mainwindow_final import Ui_MainWindow
@@ -137,13 +138,7 @@ over_zone_result = mycursor.fetchall()
 for row in over_zone_result:
     ohh.append(row[0])
 
-mycursor.execute('''SELECT number,status_id FROM lot WHERE status_id=2 ''')
-old_return_data = mycursor.fetchall()
-for row in old_return_data:
-    parked_lot.append(row[1])
-    parked_lot.append(row[0])
 
-print("information before return :",parked_lot)
 
 # nz = normal zone
 nz={"A":a,"F":f,"C":c,"B":b,"G":g,"D":d,"H":h,"E":e}
@@ -459,23 +454,51 @@ class MainWindow(QMainWindow):
 
                     return parked_lot
             return parking_lot
-    
+        
+    mycursor.execute('''SELECT number,status_id FROM lot WHERE status_id=2 ''')
+    old_return_data = mycursor.fetchall()
+    for row in old_return_data:
+        parked_lot.append(row[1])
+        parked_lot.append(row[0])
+    print("information before return :",parked_lot)
+
     def return_lot(self):
         lot_no = self.ui.return_edit.text()
-
         try:
+            # Check if the lot number is in the list of parked_lot
             if lot_no in parked_lot:
-                print("flook")
-                if parked_lot == parked_lot[0] and parked_lot == 2:
-                    print("bank")
-                    updata = ("UPDATE lot SET lot_id='1'")
-                    mycursor.execute(updata)
-                    mydb.commit()
-
-                    self.ui.return_status_label("อัพเดตสถานะสำเร็จ")
-
+                # Iterate through parked_lot
+                for index, status_id in enumerate(parked_lot):
+                    if status_id == 2:
+                        print("Updating row at index", index)
+                        
+                        # Get the corresponding lot number
+                        lot_number = parked_lot[index + 1]
+                        
+                        # Construct and execute the SQL query to update the row
+                        update_query = "UPDATE lot SET status_id = '1' WHERE number = %s"
+                        mycursor.execute(update_query, (lot_number,))
+                        mydb.commit()
+                        
+                        print(f"Update successful for lot number {lot_number}")
+                        
+                        # Update the status label to reflect the update
+                        self.ui.return_status_label.setText(f"อัพเดตสถานะสำเร็จสำหรับเลขล็อต {lot_number}")
+                        
+                        # Mark the lot as updated in parked_lot
+                        parked_lot[index] = 1
+                        break  # Exit the loop after the first successful update
+                else:
+                    self.ui.return_status_label.setText("ไม่พบเลขล็อตที่ต้องการอัพเดต")
+            else:
+                self.ui.return_status_label.setText("ไม่พบเลขล็อตที่ต้องการอัพเดต")
+        
+        except mysql.connector.Error as err:
+            self.ui.return_status_label.setText("อัพเดตสถานะไม่สำเร็จ: {}".format(err))
         except:
-            self.ui.return_status_label.setText("อัพเดตสถานะไม่สำเร็จ")
+            self.ui.return_status_label.setText("ไม่มีข้อมูล")
+
+
 
 
     def check_full_lot(self):
