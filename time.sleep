@@ -1,0 +1,29 @@
+import time
+import mysql.connector
+
+# เชื่อมต่อกับ MySQL
+mydb = mysql.connector.connect(
+    host="hostname",
+    user="username",
+    password="password",
+    database="database_name"
+)
+
+mycursor = mydb.cursor()
+
+# แสดงข้อความก่อนหน่วงเวลา
+print('ก่อนหน่วงเวลา')
+
+# หน่วงเวลา 5 วินาที
+time.sleep(5)
+
+# หลังจากหน่วงเวลาเสร็จสิ้น อัปเดตสถานะในฐานข้อมูล
+update_sql = "UPDATE your_table SET status = 'Updated Status' WHERE your_condition"
+mycursor.execute(update_sql)
+mydb.commit()
+
+# แสดงข้อความหลังจากการอัปเดตสถานะ
+print('หลังจากหน่วงเวลาและอัปเดตสถานะ')
+
+# ปิดการเชื่อมต่อ
+mydb.close()
