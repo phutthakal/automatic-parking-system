@@ -1,6 +1,0 @@
-insert_history = '''INSERT INTO history (caed_id, height, license_plate)
-                        SELECT card.card_id, card.user_height, card.user_license_plate
-                        FROM card
-                        INNER JOIN card ON history.his_id = card.card_id '''
-                        mycursor.execute(insert_history)
-                        mydb.commit()
